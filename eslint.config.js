@@ -1,23 +1,17 @@
-import js from '@eslint/js'
-import globals from 'globals'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
-import tseslint from 'typescript-eslint'
-import { globalIgnores } from 'eslint/config'
+import { FlatCompat } from '@eslint/eslintrc'
+import path from 'path'
 
-export default tseslint.config([
-  globalIgnores(['dist']),
+const compat = new FlatCompat({
+  baseDirectory: path.resolve(),
+})
+
+export default [
+  ...compat.extends('@rocketseat/eslint-config/react'),
   {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      js.configs.recommended,
-      tseslint.configs.recommended,
-      reactHooks.configs['recommended-latest'],
-      reactRefresh.configs.vite,
-    ],
-    languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
+    files: ['**/*.ts', '**/*.tsx'],
+    rules: {
+      camelcase: 'off',
+      'no-useless-constructor': 'off',
     },
   },
-])
+]
