@@ -1,5 +1,5 @@
 import { styled } from 'styled-components'
-import type { StatusProps } from '../../interfaces/StatusProps'
+import { STATUS_COLORS, type StatusProps } from '../../interfaces/StatusProps'
 
 export const HistoryContainer = styled.main`
   flex: 1;
@@ -61,11 +61,6 @@ export const HistroryList = styled.div`
     }
   }
 `
-const STATUS_COLORS = {
-  yellow: 'yellow-500',
-  green: 'green-500',
-  red: 'red-500',
-} as const
 
 export const Status = styled.span<StatusProps>`
   display: flex;
